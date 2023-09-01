@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://kh6sftc3ffiw"]
+
+[ext_resource type="Script" path="res://Scripts/Ball.gd" id="1_plioq"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_wrpjw"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h372l"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_46ua7"]
+
+[node name="Ball" type="CharacterBody3D"]
+transform = Transform3D(1.07353, 0, 0, 0, 1.07353, 0, 0, 0, 1.07353, 0, 1, 0)
+script = ExtResource("1_plioq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_wrpjw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_h372l")
+
+[node name="Area3D" type="Area3D" parent="." groups=["interactables"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(4.56, 0, 0, 0, 4.56, 0, 0, 0, 4.56, 0, 0, 0)
+shape = SubResource("SphereShape3D_46ua7")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00996208, 0.747143, -1)
+visible = false
+pixel_size = 0.01
+billboard = 1
+text = "Press R"
+
+[node name="Camera_pivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Camera_pivot"]
+transform = Transform3D(0.931506, 0, 0, 0, 0.812338, 0.455863, 0, -0.455863, 0.812338, 0, 4, 8)
+current = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

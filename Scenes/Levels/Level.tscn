@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4vkwfragksrj"]
+
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_67qpp"]
+[ext_resource type="PackedScene" uid="uid://kh6sftc3ffiw" path="res://Scenes/Player/Ball.tscn" id="2_nip4u"]
+[ext_resource type="PackedScene" uid="uid://hoykgcgy47mg" path="res://Scenes/Objects/Sword.tscn" id="3_64duv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c3cgl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xu71u"]
+size = Vector3(47, 1, 41)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qo704"]
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_67qpp")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_c3cgl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_xu71u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+transform = Transform3D(46.8413, 0, 0, 0, 1, 0, 0, 0, 40.2261, 0, 0, 0)
+mesh = SubResource("BoxMesh_qo704")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0600556, 0.998195, 0, -0.998195, 0.0600556, 0, 10.1196, 0)
+light_energy = 1.762
+
+[node name="Ball" parent="." instance=ExtResource("2_nip4u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -4.50144)
+
+[node name="Sword" parent="." groups=["interactables"] instance=ExtResource("3_64duv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.63545, 1)
+
+[node name="Sword2" parent="." groups=["interactables"] instance=ExtResource("3_64duv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.16437, 1.63545, 1)
+
+[connection signal="can_interact" from="Ball" to="." method="_on_ball_can_interact"]
+[connection signal="can_not_interact" from="Ball" to="." method="_on_ball_can_not_interact"]
