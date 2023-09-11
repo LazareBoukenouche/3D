@@ -6,7 +6,7 @@ extends Node3D
 func _ready():
 	
 	
-	var camera = get_node("Ball/Camera_pivot/Camera3D")
+	
 	
 	
 	pass
@@ -16,12 +16,14 @@ func _ready():
 func _process(_delta):
 
 
-	if has_node("Ball"):
-		if Input.is_action_just_pressed("take"):
-			print(get_node("Ball").get_child((1)))
-			if get_node("Ball").get_child((1)):
-				get_node("Sword").queue_free()
+#	if has_node("Ball"):
+#		if Input.is_action_just_pressed("take"):
+#			print(get_node("Ball").get_child((1)))
+#			if get_node("Ball").get_child((1)):
+#				get_node("Sword").reparent($Ball)
+#				get_node("Sword").queue_free()
 
+	pass
 
 			
 
@@ -29,7 +31,7 @@ func _process(_delta):
 
 
 
-func _input(event):
+func _input(_event):
 #	if Input.is_mouse_button_pressed(1):
 #		if event is InputEventMouseMotion:
 #			print(event.relative)
