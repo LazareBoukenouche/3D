@@ -6,7 +6,7 @@ extends Node3D
 func _ready():
 	
 	
-	
+	print(Input.get_connected_joypads())
 	
 	
 	pass

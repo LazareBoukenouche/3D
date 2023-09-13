@@ -24,8 +24,10 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready() -> void:
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)	
-	
+
+		
 func _physics_process(delta):
+	
 	
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -35,7 +37,9 @@ func _physics_process(delta):
 	input.x = Input.get_axis("move_left", "move_right")
 	input.z = Input.get_axis("move_up", "move_down")
 	
-	
+	var camera_input := Vector3.ZERO
+	camera_input.x = Input.get_axis("move_camera_left", "move_camera_right")
+	camera_input.z = Input.get_axis("move_camera_up", "move_camera_down")
 	horizontal_pivot.rotate_y(horizontal_pivot_input)
 	vertical_pivot.rotate_x(vertical_pivot_input)
 	vertical_pivot.rotation.x = clamp(vertical_pivot.rotation.x, 
@@ -46,12 +50,13 @@ func _physics_process(delta):
 	horizontal_pivot_input = 0.0
 	vertical_pivot_input = 0.0
 	
+	if Input.is_action_just_pressed("attack"):
+		print("attack")
+		
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
-	if Input.is_action_just_pressed("attack"):
-		print(input)
-		pass
+	
 		
 	if Input.is_action_just_pressed("take"):
 		# Check if object in area has the property : interactable
@@ -83,7 +88,7 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
 	# Get the input direction and handle the movement/deceleration.
@@ -101,6 +106,23 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func _unhandled_input(event: InputEvent) -> void:
+	
+	if event is InputEventJoypadMotion:
+		
+		# If the right stick move vertically
+		if event.axis == JOY_AXIS_RIGHT_Y:
+			
+			if event.get_action_strength("move_camera_up") > 0.5:
+				vertical_pivot_input = + event.get_axis() * 0.1
+			elif event.get_action_strength("move_camera_down") > 0.5:
+				vertical_pivot_input = - event.get_axis() * 0.1
+				
+		elif  event.axis == JOY_AXIS_RIGHT_X:
+			if event.get_action_strength("move_camera_left") > 0.5:
+				horizontal_pivot_input = + (event.get_axis() * 0.1)
+			elif event.get_action_strength("move_camera_right") > 0.5:
+				horizontal_pivot_input = - event.get_axis() * 0.1	
+	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		if event is InputEventMouseMotion:
@@ -108,9 +130,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				horizontal_pivot_input = - event.relative.x * mouse_sensitivity
 				vertical_pivot_input = - event.relative.y * mouse_sensitivity
 				
-	if !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-#	
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
 				
 
 func _on_area_3d_body_entered(body):
