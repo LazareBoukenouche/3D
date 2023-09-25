@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://dh2borntc2bqs"]
+
+[ext_resource type="Script" path="res://Levels/Scripts/Level2.gd" id="1_j30nt"]
+[ext_resource type="PackedScene" uid="uid://b6usc20ict8u7" path="res://Player/Scenes/Guts.tscn" id="2_4jq8h"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c3cgl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xu71u"]
+size = Vector3(47, 1, 41)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qo704"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ufiaf"]
+metallic = 0.65
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_j30nt")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+physics_material_override = SubResource("PhysicsMaterial_c3cgl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_xu71u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/CollisionShape3D"]
+transform = Transform3D(46.8413, 0, 0, 0, 1, 0, 0, 0, 40.2261, 0, 0, 0)
+mesh = SubResource("BoxMesh_qo704")
+surface_material_override/0 = SubResource("StandardMaterial3D_ufiaf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0600556, 0.998195, 0, -0.998195, 0.0600556, 0, 10.1196, 0)
+light_energy = 1.762
+
+[node name="Guts" parent="." instance=ExtResource("2_4jq8h")]

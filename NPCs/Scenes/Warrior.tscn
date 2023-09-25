@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctqrp3ogq5gqu"]
+
+[ext_resource type="PackedScene" uid="uid://cdrg4s20437j7" path="res://addons/kaykit_character_pack_adventures/Characters/gltf/Barbarian.glb" id="1_mas5c"]
+
+[node name="Barbarian" instance=ExtResource("1_mas5c")]
+
+[node name="Skeleton3D" parent="Rig" index="0"]
+bones/1/position = Vector3(1.11963e-10, 0.410155, -0.000469606)
+bones/1/rotation = Quaternion(-0.0593905, -0.0802706, 0.00660844, 0.99498)
+bones/2/rotation = Quaternion(-0.0306253, -0.144201, 0.00980381, 0.989026)
+bones/3/rotation = Quaternion(-0.0587298, 0.000595483, -0.00327398, 0.998268)
+bones/4/rotation = Quaternion(-0.628444, 0.0689496, -0.439867, 0.637825)
+bones/5/rotation = Quaternion(-8.84278e-08, -1.64594e-08, -0.576174, 0.817327)
+bones/7/rotation = Quaternion(-0.439838, -0.143849, 0.171286, 0.869776)
+bones/11/rotation = Quaternion(-0.471466, 0.530784, 0.702725, -0.0465209)
+bones/12/rotation = Quaternion(-7.2407e-09, 7.9783e-08, 0.244664, 0.969608)
+bones/14/rotation = Quaternion(-0.293762, 0.408033, 0.0667193, 0.861836)
+bones/15/rotation = Quaternion(-0.00943077, 0.00915222, 0.766164, 0.642511)
+bones/19/rotation = Quaternion(0.00843551, 0.217479, -0.0420203, 0.975124)
+bones/22/rotation = Quaternion(0.976764, 0.0272627, -0.0661004, -0.202036)
+bones/23/rotation = Quaternion(0.00197424, 6.98452e-08, -9.42691e-10, 0.999998)
+bones/24/rotation = Quaternion(-0.449612, -0.264271, -0.0185404, 0.853033)
+bones/26/rotation = Quaternion(0.995171, -0.0295964, -0.0934007, 0.00599173)
+bones/27/rotation = Quaternion(0.0912064, -6.83134e-08, 6.63239e-08, 0.995832)
+bones/28/rotation = Quaternion(-0.394751, 0.114285, 0.0109882, 0.911587)
+bones/31/position = Vector3(0.213918, 0.0259903, 0.173866)
+bones/31/rotation = Quaternion(-0.705092, 0.0533355, 0.0533355, 0.705092)
+bones/32/rotation = Quaternion(9.65792e-09, 1.77955e-09, 0.985719, -0.168398)
+bones/33/rotation = Quaternion(-1.04035e-07, 0.391084, 0.920355, -2.9526e-08)
+bones/39/rotation = Quaternion(-5.83589e-09, 6.43837e-10, 0.994809, 0.101756)
+bones/40/rotation = Quaternion(-1.04035e-07, 0.391084, 0.920355, -2.95261e-08)
+bones/45/position = Vector3(0.531539, 0.882501, 0.00655193)
+bones/45/rotation = Quaternion(0.613889, -4.3055e-05, 0.789393, 4.292e-05)
+bones/46/position = Vector3(-0.453507, 0.648903, -0.428085)
+bones/47/position = Vector3(-0.509508, 1.06723, 0.142604)
+bones/47/rotation = Quaternion(-0.510211, 0.481733, 0.43971, -0.560601)
+
+[node name="1H_Axe_Offhand" parent="Rig/Skeleton3D" index="0"]
+transform = Transform3D(0.00012225, -0.246282, 0.969197, 0.999999, 1.63719e-05, -0.00012177, 1.44809e-05, 0.969197, 0.246282, 0.511111, 0.745432, 0.0680692)
+bone_idx = 9
+
+[node name="Barbarian_Round_Shield" parent="Rig/Skeleton3D" index="1"]
+transform = Transform3D(0.000120751, -0.246283, 0.969197, 0.999999, 1.38515e-05, -0.000120864, 1.67006e-05, 0.969197, 0.246282, 0.666208, 0.745413, 0.0906657)
+bone_idx = 10
+
+[node name="1H_Axe" parent="Rig/Skeleton3D" index="2"]
+transform = Transform3D(-0.00134587, -0.149028, 0.988831, -0.266614, 0.953093, 0.143279, -0.963801, -0.263444, -0.0410155, -0.499704, 1.12495, 0.288621)
+bone_idx = 16
+
+[node name="2H_Axe" parent="Rig/Skeleton3D" index="3"]
+transform = Transform3D(-0.00134587, -0.149028, 0.988831, -0.266614, 0.953093, 0.143279, -0.963801, -0.263444, -0.0410155, -0.499704, 1.12495, 0.288621)
+bone_idx = 17
+
+[node name="Mug" parent="Rig/Skeleton3D" index="4"]
+transform = Transform3D(-0.00134587, -0.149028, 0.988831, -0.266614, 0.953093, 0.143279, -0.963801, -0.263444, -0.0410155, -0.492006, 1.15843, 0.591202)
+bone_idx = 18
+
+[node name="Barbarian_Hat" parent="Rig/Skeleton3D" index="5"]
+transform = Transform3D(0.991343, 0.130785, -0.0116014, -0.123763, 0.960296, 0.25003, 0.0438409, -0.246429, 0.968169, 0.00879329, 1.20234, -0.161577)
+bone_idx = 20
+
+[node name="Barbarian_Cape" parent="Rig/Skeleton3D" index="6"]
+transform = Transform3D(0.900352, 0.0531046, -0.43191, 0.0764703, 0.957773, 0.27717, 0.42839, -0.282579, 0.858272, 0.0107765, 1.2024, -0.160654)
+bone_idx = 21
