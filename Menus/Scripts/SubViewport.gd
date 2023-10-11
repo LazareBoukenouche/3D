@@ -10,6 +10,6 @@ func _ready():
 func _process(delta):
 	pass
 
-if event is InputEventJoypadButton:
-		if event.button_index == JOY_BUTTON_A and event.pressed:
-			get_tree().change_scene_to_packed(level)
+#	if event is InputEventJoypadButton:
+#			if event.button_index == JOY_BUTTON_A and event.pressed:
+#				get_tree().change_scene_to_packed(level)
