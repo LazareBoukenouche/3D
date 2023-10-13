@@ -4,6 +4,7 @@ signal can_interact
 
 signal can_not_interact
 
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -102,8 +103,11 @@ func _physics_process(delta):
 	var direction = (horizontal_pivot.basis * player_input).normalized()
 #
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		if state_machine.get_current_node() == "attack":
+			velocity = Vector3.ZERO
+		else:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
 		
 		
 	else:
@@ -150,12 +154,15 @@ func update_animation_parameters():
 		state_machine.travel("idle")
 	
 	if Input.is_action_pressed("move_up"):
+		
 		if Input.get_action_strength('move_up') == 1:
 			state_machine.travel("run")
 		elif Input.get_action_strength('move_up') < 1:
+			
 			state_machine.travel("walk")
 			
 	if Input.is_action_pressed("move_down"):
+		
 		if Input.get_action_strength('move_down') == 1:
 			state_machine.travel("run")
 		elif Input.get_action_strength('move_down') < 1:
@@ -204,7 +211,6 @@ func update_animation_parameters():
 
 func _on_animation_tree_animation_started(anim_name):
 		print("Start :",anim_name)
-		velocity = Vector3.ZERO
 
 
 func _on_animation_tree_animation_finished(anim_name):
