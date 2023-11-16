@@ -1,7 +1,7 @@
 extends Control
 
 
-const level2 = preload("res://Levels/Scenes/Level2.tscn")
+const level2 = preload("res://Levels/Scenes/Level.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var _start = $Container/Start
